@@ -1,10 +1,10 @@
 <template>
-  <q-page class="row justify-center col-xl-5 col-lg-7 col-md-7 col-sm-11 col-xs-11  items-center">
+  <q-page id="home" class="row justify-center col-xl-5 col-lg-7 col-md-7 col-sm-11 col-xs-12 items-center">
     <div class="row q-pl-xl">
-      <span class="text-white text-bold text-h1 col-12">
-        Café quente pela manhã
+      <span :class="$q.screen.gt.xs ? 'text-white text-bold text-h1 col-12 font-main' : 'text-white text-bold text-h4 col-12 font-main'">
+        Café quente pela manhã torna tudo melhor!
       </span>
-      <p class="text-white text-body2 col-12 q-mt-md">
+      <p class="text-white text-body2 col-12 q-mt-md font-main">
         It has survived not only five centuries, but also the leap into
         electronic typesetting, remaining essentially unchanged. It was
         popularised in the 1960s with the release of Letraset sheets containing
@@ -24,6 +24,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .botoes {
   transition: transform 0.3s;
 }

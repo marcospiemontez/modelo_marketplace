@@ -1,18 +1,23 @@
 <template>
   <q-page class="banner row">
-    <home />
-    <sobre />
+
+    <Home />
+    <Sobre />
+    <Menu />    
+
   </q-page>
 </template>
 
 <script>
-import Home from 'components/ladingpage/Home'
-import Sobre from 'components/ladingpage/Sobre'
+import Home from "components/ladingpage/Home";
+import Sobre from "components/ladingpage/Sobre";
+import Menu from "components/ladingpage/Menu";
 
 export default {
   components: {
     Home,
     Sobre,
+    Menu
   },
   name: "landingPage",
   setup() {
