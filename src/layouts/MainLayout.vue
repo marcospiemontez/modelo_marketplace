@@ -1,43 +1,27 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
+      <q-toolbar class="bg-dark">
+        <q-toolbar-title class="row justify-between">
+          <div class="q-pt-lg q-pl-xl">
+            <img width="80" src="/images/logo.png">
+          </div>
+          <div class="row col-xl-4 col-lg-5 col-md-6 gt-md items-center justify-between">
+            <div class="cursor-pointer hovers">Home</div>
+            <div class="cursor-pointer hovers">Sobre</div>
+            <div class="cursor-pointer hovers">Menu</div>
+            <div class="cursor-pointer hovers">Produtos</div>
+            <div class="cursor-pointer hovers">Review</div>
+            <div class="cursor-pointer hovers">Contatos</div>
+            <div class="cursor-pointer hovers">Blogs</div>
+          </div>
+          <div class="row q-pr-xl items-center">
+            <q-icon size="30px" name="search" />
+            <q-icon size="30px" name="shopping_cart" />
+          </div>
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -98,10 +82,6 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'MainLayout',
 
-  components: {
-    EssentialLink
-  },
-
   setup () {
     const leftDrawerOpen = ref(false)
 
@@ -115,3 +95,14 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.hovers {
+ display:inline-block;
+ padding: 5px;
+}
+
+.hovers:hover {
+  border-bottom: 1px solid #ab7340;
+}
+</style>
