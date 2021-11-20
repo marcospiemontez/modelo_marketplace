@@ -127,7 +127,7 @@
             </template>
           </q-input>
           <div
-            class="row col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11 justify-center q-my-lg"
+            class="row col-12 items-end justify-center q-mt-xl q-mb-md q-gutter-x-xl"
           >
             <q-btn
               @mouseover="activeHover = true"
@@ -137,7 +137,20 @@
               rounded
               standout
               outlined
-              class="col-xl-10"
+              class="col-3"
+              label="Fechar"
+              type="submit"
+              @click="closeModalRegistration()"
+            />
+            <q-btn
+              @mouseover="activeHover2 = true"
+              @mouseleave="activeHover2 = false"
+              :color="activeHover2 ? 'grey-10' : 'primary'"
+              size="20px"
+              rounded
+              standout
+              outlined
+              class="col-3"
               label="Cadastrar"
               type="submit"
               @click="onSubmit()"
@@ -160,7 +173,7 @@ export default {
     return {
       modalRegistration: ref(false),
       activeHover: ref(false),
-      activeHoverForget: ref(false),
+      activeHover2: ref(false),
       isPwd: ref(true),
       isPwd2: ref(true),
       dataUser: {
