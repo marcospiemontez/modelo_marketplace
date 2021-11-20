@@ -2,7 +2,7 @@
   <q-page class="banner row">
 
     <Home />
-    <Sobre />
+    <About />
     <Menu />    
 
   </q-page>
@@ -10,14 +10,14 @@
 
 <script>
 import Home from "components/ladingpage/Home";
-import Sobre from "components/ladingpage/Sobre";
 import Menu from "components/ladingpage/Menu";
+import About from "components/ladingpage/About";
 
 export default {
   components: {
     Home,
-    Sobre,
-    Menu
+    Menu,
+    About
   },
   name: "landingPage",
   setup() {

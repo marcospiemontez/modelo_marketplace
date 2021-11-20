@@ -10,7 +10,7 @@
         popularised in the 1960s with the release of Letraset sheets containing
       </p>
       <div class="row col-12">
-        <q-btn size="15px" class="botoes" color="secondary" no-caps label="Cadastre-se" />
+        <q-btn size="15px" class="button" color="secondary" no-caps label="Cadastre-se" />
       </div>
     </div>
   </q-page>
@@ -23,14 +23,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
 
-.botoes {
+.button {
   transition: transform 0.3s;
 }
 
-.botoes:hover {
+.button:hover {
   transform: scale(1.3);
 }
 </style>

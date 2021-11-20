@@ -28,7 +28,7 @@
           popularised in the 1960s with the release
         </span>
         <div class="row col-12 q-my-xl">
-          <q-btn size="15px" class="botoes" color="secondary" no-caps label="Saiba mais" />
+          <q-btn size="15px" class="button" color="secondary" no-caps label="Saiba mais" />
         </div>
       </div>
     </div>
@@ -37,19 +37,19 @@
 
 <script>
 export default {
-  name: "Sobre",
+  name: "About",
   setup() {
     return {};
   },
 };
 </script>
 
-<style scoped>
-.botoes {
+<style>
+.button {
   transition: transform 0.3s;
 }
 
-.botoes:hover {
+.button:hover {
   transform: scale(1.3);
 }
 </style>
