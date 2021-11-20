@@ -9,21 +9,24 @@
 </template>
 
 <script>
-import Home from "components/ladingpage/Home";
-import Menu from "components/ladingpage/Menu";
-import About from "components/ladingpage/About";
+import Home from "components/ladingpage/Home"
+import Menu from "components/ladingpage/Menu"
+import About from "components/ladingpage/About"
 
 export default {
+  name: "landingPage",
   components: {
     Home,
     Menu,
     About
   },
-  name: "landingPage",
   setup() {
-    return {};
-  },
-};
+    return {
+      
+    }
+  }
+}
+
 </script>
 
 <style scoped>
