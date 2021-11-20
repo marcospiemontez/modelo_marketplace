@@ -8,7 +8,7 @@
         <img class="full-width" src="/images/about-img.jpeg" />
       </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-11 col-xs-11 q-pl-lg" style="background-color: #111119">
-        <span class="row text-bold text-white text-h3 col-12 q-mt-xl font-main">
+        <span class="row text-bold text-secondary text-h3 col-12 q-mt-xl font-main">
         O que torna nosso café especial?
         </span>
         <span class="row text-white q-mt-lg">

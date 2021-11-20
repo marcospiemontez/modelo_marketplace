@@ -7,13 +7,13 @@
             <img width="80" src="/images/logo.png">
           </div>
           <div class="row col-xl-4 col-lg-5 col-md-6 gt-md items-center justify-between">
-            <a href="#home" class="cursor-pointer hovers text-white">Home</a>
-            <a href="#sobre" class="cursor-pointer hovers text-white">Sobre</a>
-            <a href="#menu" class="cursor-pointer hovers text-white">Menu</a>
-            <a href="#produtos" class="cursor-pointer hovers text-white">Produtos</a>
-            <a href="#review" class="cursor-pointer hovers text-white">Review</a>
-            <a href="#contatos" class="cursor-pointer hovers text-white">Contatos</a>
-            <a href="#blogs" class="cursor-pointer hovers text-white">Blogs</a>
+            <a href="#home" class="cursor-pointer hovers text-secondary">Home</a>
+            <a href="#sobre" class="cursor-pointer hovers text-secondary">Sobre</a>
+            <a href="#menu" class="cursor-pointer hovers text-secondary">Menu</a>
+            <a href="#produtos" class="cursor-pointer hovers text-secondary">Produtos</a>
+            <a href="#review" class="cursor-pointer hovers text-secondary">Review</a>
+            <a href="#contatos" class="cursor-pointer hovers text-secondary">Contatos</a>
+            <a href="#blogs" class="cursor-pointer hovers text-secondary">Blogs</a>
           </div>
           <div class="row q-pr-xl items-center">
             <q-icon size="30px" name="search" />
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 
 export default ({
   name: 'MainLayout',
@@ -43,19 +42,19 @@ export default ({
 </script>
 
 <style>
-a:link 
-{ 
- text-decoration:none; 
-}
+  a:link 
+  { 
+  text-decoration:none; 
+  }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-.hovers {
- display:inline-block;
- padding: 5px;
-}
+  .hovers {
+  display:inline-block;
+  padding: 5px;
+  }
 
-.hovers:hover {
-  border-bottom: 1px solid #ab7340;
-}
+  .hovers:hover {
+    border-bottom: 1px solid #a08f82;
+  }
 </style>

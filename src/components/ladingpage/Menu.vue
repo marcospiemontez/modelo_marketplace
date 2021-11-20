@@ -1,7 +1,7 @@
 <template>
   <q-page id="menu" class="col-12 bg-dark">
     <div class="row justify-center bg-dark q-mt-lg">
-      <span class="text-h3 text-bold text-white">NOSSO <b class="text-secondary">MENU</b> </span>
+      <span class="text-h3 text-bold text-secondary">NOSSO <b class="text-white">MENU</b> </span>
     </div>
     <div :class="$q.screen.gt.md? 'row justify-between q-px-xl q-my-lg q-gutter-y-xl' : 'row justify-center q-gutter-y-lg q-gutter-x-lg q-mt-lg'">
       <div class="text-center col-xl-3 col-lg-3 col-md-4 col-sm-11 col-xs-11 bg-dark no-shadow cards" style="border: 1px solid #fff">
@@ -10,8 +10,8 @@
             <img src="/images/menu-1.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -24,8 +24,8 @@
             <img src="/images/menu-2.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -38,8 +38,8 @@
             <img src="/images/menu-3.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -52,8 +52,8 @@
             <img src="/images/menu-4.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -66,8 +66,8 @@
             <img src="/images/menu-5.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -80,8 +80,8 @@
             <img src="/images/menu-6.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -94,8 +94,8 @@
             <img src="/images/menu-6.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
@@ -108,8 +108,8 @@
             <img src="/images/menu-6.png">
           </q-avatar>
           <div class="row q-my-xl">
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
-            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b style="text-decoration: line-through">R$20,00</b></span>
+            <span class="text-secondary text-center col-12 text-h6 text-weight-regular">Saboroso e Saudável</span>
+            <span class="text-white text-center col-12 text-h6 text-weight-regular">R$15,00 <b class="text-secondary" style="text-decoration: line-through">R$20,00</b></span>
           </div>
           <div class="row col-12 justify-center">
             <q-btn class="button" style="height:30px" color="secondary" no-caps label="Adicionar ao Carrinho" />
