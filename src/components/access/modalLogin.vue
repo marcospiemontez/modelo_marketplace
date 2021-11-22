@@ -82,7 +82,7 @@
             @mouseleave="activeHoverCreateAccount = false"
             type="a"
             target="_blank"
-            @click="$router.push({ name: 'cadastro' })"
+            @click="openDialogRegistration()"
           >
             Crei sua conta
             <q-icon size="25px" name="arrow_right_alt" />
@@ -92,16 +92,19 @@
     </q-card>
   </q-dialog>
 
-  <modal-forgot-password ref="modalForgotPassword"/>
+  <modal-forgot-password ref="modalForgotPassword"/>`
+  <modal-registration ref="modalRegistration" />
 </template>
 
 <script>
 import { ref } from 'vue'
 import modalForgotPassword from './modalForgotPassword'
+import ModalRegistration from './modalRegistration.vue'
 
 export default {
   components: {
-    modalForgotPassword
+    modalForgotPassword,
+    ModalRegistration
   },
   name: "modalLogin",
   setup() {
@@ -128,6 +131,9 @@ export default {
     openForgotPassword() {
       this.closeModalLogin(),
       this.$refs.modalForgotPassword.openForgotPassword()
+    },
+    openDialogRegistration() {
+      this.$refs.modalRegistration.openModalRegistration()
     }
   }
 }

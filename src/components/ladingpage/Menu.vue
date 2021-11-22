@@ -1,6 +1,6 @@
 <template>
-  <q-page id="menu" class="col-12 bg-dark">
-    <div class="row justify-center bg-dark q-mt-lg">
+  <q-page class="col-12 bg-dark">
+    <div id="menu" class="row justify-center bg-dark q-mt-lg">
       <span class="text-h3 text-bold text-secondary">NOSSO <b class="text-white">MENU</b> </span>
     </div>
     <div :class="$q.screen.gt.md? 'row justify-between q-px-xl q-my-lg q-gutter-y-xl' : 'row justify-center q-gutter-y-lg q-gutter-x-lg q-mt-lg'">

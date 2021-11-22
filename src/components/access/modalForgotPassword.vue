@@ -47,6 +47,7 @@
             :class="activeHoverCreateAccount ? 'cursor-pointer text-primary' : 'text-grey-8 cursor-pointer'"
             @mouseover="activeHoverCreateAccount = true"
             @mouseleave="activeHoverCreateAccount = false"
+            @click="openDialogRegistration()"
             type="a"
             target="_blank"
           >
@@ -57,12 +58,15 @@
       </div>
     </q-card>
   </q-dialog>
+  <modal-registration ref="modalRegistration" />
 </template>
 
 <script>
 import { ref } from 'vue'
+import modalRegistration from './modalRegistration.vue'
 
 export default {
+  components: { modalRegistration },
   name: "modalForgotPassword",
   setup() {
     return {
@@ -85,6 +89,9 @@ export default {
     },
     openForgotPassword() {
       this.modalForgotPassword = true
+    },
+    openDialogRegistration() {
+      this.$refs.modalRegistration.openModalRegistration()
     }
   }
 }

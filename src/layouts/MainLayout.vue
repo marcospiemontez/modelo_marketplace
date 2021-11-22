@@ -15,9 +15,10 @@
             <a href="#contatos" class="cursor-pointer hovers text-secondary">Contatos</a>
             <a href="#blogs" class="cursor-pointer hovers text-secondary">Blogs</a>
           </div>
-          <div class="row q-pr-xl items-center">
+          <div class="row q-pr-xl items-center q-gutter-x-sm">
             <q-icon size="30px" name="search" />
             <q-icon size="30px" name="shopping_cart" />
+            <q-btn label="Entrar" color="secondary" no-caps @click="openDialogLogin()" />
           </div>
         </q-toolbar-title>
       </q-toolbar>
@@ -26,18 +27,30 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <modal-login ref="modalLogin" />
   </q-layout>
 </template>
 
 <script>
+import modalLogin from '../components/access/modalLogin'
 
 export default ({
   name: 'MainLayout',
 
+  components: {
+    modalLogin
+  },
+
   setup () {
 
     return {}
-  }
+  },
+
+  methods: {
+    openDialogLogin() {
+      this.$refs.modalLogin.openModalLogin()
+    }
+  },
 })
 </script>
 
