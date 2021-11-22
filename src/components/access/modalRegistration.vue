@@ -41,6 +41,7 @@
             placeholder="Email"
             rounded
             standout="bg-accent"
+            lazy-rules
           >
           </q-input>
           <q-input
@@ -176,7 +177,7 @@ export default {
       activeHover2: ref(false),
       isPwd: ref(true),
       isPwd2: ref(true),
-      dataUser: {
+      dataUser: ref({
         name: ref(''),
         surname: ref(''),
         email: ref(''),
@@ -185,7 +186,7 @@ export default {
         birthday: ref(''),
         password: ref(''),
         confirmPassword: ref(''),
-      },
+      }),
     }
   },
   methods: {

@@ -11,14 +11,51 @@
             <a href="#sobre" class="cursor-pointer hovers text-secondary">Sobre</a>
             <a href="#menu" class="cursor-pointer hovers text-secondary">Menu</a>
             <a href="#produtos" class="cursor-pointer hovers text-secondary">Produtos</a>
-            <a href="#review" class="cursor-pointer hovers text-secondary">Review</a>
             <a href="#contatos" class="cursor-pointer hovers text-secondary">Contatos</a>
-            <a href="#blogs" class="cursor-pointer hovers text-secondary">Blogs</a>
           </div>
           <div class="row q-pr-xl items-center q-gutter-x-sm">
             <q-icon size="30px" name="search" />
             <q-icon size="30px" name="shopping_cart" />
             <q-btn label="Entrar" color="secondary" no-caps @click="openDialogLogin()" />
+
+            <q-btn-dropdown v-if="typeUser === 'admin'" color="secondary" no-caps label="Marcos Piemontez" dropdown-icon="coffee">
+              <q-list>
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Painel de Controle</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Sair</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+
+            <q-btn-dropdown v-else color="secondary" no-caps label="Marcos Piemontez" dropdown-icon="coffee">
+              <q-list>
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Perfil</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Pedidos</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Sair</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+
           </div>
         </q-toolbar-title>
       </q-toolbar>
@@ -32,6 +69,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import modalLogin from '../components/access/modalLogin'
 
 export default ({
@@ -42,8 +80,9 @@ export default ({
   },
 
   setup () {
-
-    return {}
+    return {
+      typeUser: ref('admin')
+    }
   },
 
   methods: {
