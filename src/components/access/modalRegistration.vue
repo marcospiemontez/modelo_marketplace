@@ -65,7 +65,7 @@
           <q-input
             required
             type="date"
-            v-model="dataUser.birthdate"
+            v-model="dataUser.birthDate"
             class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
@@ -172,7 +172,7 @@ export default {
       dataUser: ref({
         name: ref(''),
         cpf: ref(''),
-        birthdate: ref(''),
+        birthDate: ref(''),
         password: ref(''),
         email: ref(''),
         phone: ref(''),
@@ -192,7 +192,7 @@ export default {
     },
 
     onSubmit () {
-      if (this.dataUser.name !== '' && this.dataUser.cpf !== '' && this.dataUser.birthdate !== '' && this.dataUser.email !== '' && this.dataUser.phone !== '' && this.dataUser.password !== '') {
+      if (this.dataUser.name !== '' && this.dataUser.cpf !== '' && this.dataUser.birthDate !== '' && this.dataUser.email !== '' && this.dataUser.phone !== '' && this.dataUser.password !== '') {
         if (this.dataUser.password === this.dataUser.confirmPassword) {
           delete this.dataUser.confirmPassword
           this.createUser({

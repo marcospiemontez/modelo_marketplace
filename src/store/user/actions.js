@@ -26,7 +26,6 @@ export function loginUser ({ commit }, { data }) {
 }
 // FIM ROTAS AUTENTICADAS
 
-
 // ROTAS AUTENTICADAS PELO TOKEN REALIZAM A REQUISIÇÃO  COM A IMPORTAÇÃO DA VARIÁVEL "f"
 export function getUSer ({ commit }, { id }) {
     return new Promise((resolve, reject) => {
