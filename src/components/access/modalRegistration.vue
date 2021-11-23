@@ -22,17 +22,6 @@
           </q-input>
           <q-input
             required
-            v-model="dataUser.surname"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Sobrenome"
-            rounded
-            standout="bg-accent"
-          >
-          </q-input>
-          <q-input
-            required
             type="email"
             v-model="dataUser.email"
             class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
@@ -53,8 +42,9 @@
             placeholder="telefone"
             rounded
             standout="bg-accent"
-            mask="(##) ##### - ####"
-            fill-mask
+            mask="(##) #####-####"
+            lazy-rules
+            unmasked-value
           >
           </q-input>
           <q-input
@@ -67,14 +57,15 @@
             rounded
             standout="bg-accent"
             mask="###.###.###-##"
-            :rules="[(val) => !!val || 'Campo obrigatório', checkCpf(dataUser.cpf)]"
+            :rules="[(val) => !!val || 'Campo obrigatório', checkCpf]"
             lazy-rules
+            unmasked-value
           >
           </q-input>
           <q-input
             required
             type="date"
-            v-model="dataUser.birthday"
+            v-model="dataUser.birthdate"
             class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
@@ -166,6 +157,7 @@
 
 <script>
 import { ref } from 'vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: {},
@@ -179,17 +171,19 @@ export default {
       isPwd2: ref(true),
       dataUser: ref({
         name: ref(''),
-        surname: ref(''),
+        cpf: ref(''),
+        birthdate: ref(''),
+        password: ref(''),
         email: ref(''),
         phone: ref(''),
-        cpf: ref(''),
-        birthday: ref(''),
-        password: ref(''),
+        typeAccessId: ref(3),
         confirmPassword: ref(''),
       }),
     }
   },
   methods: {
+    ...mapActions('user', ['createUser']),
+
     openModalRegistration() {
       this.modalRegistration = true
     },
@@ -197,7 +191,50 @@ export default {
       this.modalRegistration = false
     },
 
-    onSubmit () {},
+    onSubmit () {
+      if (this.dataUser.name !== '' && this.dataUser.cpf !== '' && this.dataUser.birthdate !== '' && this.dataUser.email !== '' && this.dataUser.phone !== '' && this.dataUser.password !== '') {
+        if (this.dataUser.password === this.dataUser.confirmPassword) {
+          delete this.dataUser.confirmPassword
+          this.createUser({
+            data: this.dataUser
+          }).then((res) => {
+            this.$q.notify({
+              position: "bottom",
+              color: "positive",
+              textColor: "white",
+              icon: "check",
+              message: "Usuário criado com sucesso!",
+            })
+            
+            this.closeModalRegistration()
+          }).catch((error) => {
+            this.$q.notify({
+              position: "bottom",
+              color: "negative",
+              textColor: "white",
+              icon: "error",
+              message: error.data.message,
+            })
+          })
+        } else {
+          this.$q.notify({
+            position: "bottom",
+            color: "negative",
+            textColor: "white",
+            icon: "error",
+            message: "As senhas inseridas não conferem!",
+          })
+        }
+      } else {
+        this.$q.notify({
+          position: "bottom",
+          color: "negative",
+          textColor: "white",
+          icon: "error",
+          message: "Preencha todos os campos para realizar o cadastro!",
+        })
+      }
+    },
 
     checkCpf (cpf) {
       let add
