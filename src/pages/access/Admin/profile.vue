@@ -23,7 +23,8 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="Nome"
-            rounded
+            outlined
+            dense
             standout="bg-accent"
           >
           </q-input>
@@ -34,19 +35,21 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="Sobrenome"
-            rounded
+            outlined
+            dense
             standout="bg-accent"
           >
           </q-input>
           <q-input
             required
+            outlined
+            dense
             type="email"
             v-model="dataUser.email"
             class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="Email"
-            rounded
             standout="bg-accent"
             lazy-rules
           >
@@ -58,7 +61,8 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="telefone"
-            rounded
+            outlined
+            dense
             standout="bg-accent"
             mask="(##) ##### - ####"
             fill-mask
@@ -71,7 +75,8 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="CPF"
-            rounded
+            outlined
+            dense
             standout="bg-accent"
             mask="###.###.###-##"
             :rules="[(val) => !!val || 'Campo obrigatório', checkCpf(dataUser.cpf)]"
@@ -86,7 +91,9 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="Data Nascimento"
-            rounded
+            outlined
+            dense
+            color="white"
             standout="bg-accent"
           >
           </q-input>
@@ -98,7 +105,8 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="Senha"
-            rounded
+            outlined
+            dense
             standout="bg-accent"
             lazy-rules
           >
@@ -120,7 +128,8 @@
             input-class="text-grey-7 text-subtitle1"
             label-color="primary"
             placeholder="Confirmar Senha"
-            rounded
+            outlined
+            dense
             standout="bg-accent"
             lazy-rules
           >
