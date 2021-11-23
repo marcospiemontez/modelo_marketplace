@@ -4,7 +4,7 @@
       class="card q-py-lg row items-center justify-center"
       style="border-radius: 20px; max-height: 500px; max-width: 1000px; background: linear-gradient(40deg, #311a14, #21222c);">
         <div class="row col-12 justify-end">
-          <q-btn flat color="secondary" icon="close" /> 
+          <q-btn flat color="secondary" icon="close" @click="closeModalLogin()" /> 
         </div>
       <div class="gt-sm row justify-center col-4">
         <q-img width="130px" src="/images/logo.png" />

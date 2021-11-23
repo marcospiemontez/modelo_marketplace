@@ -1,30 +1,22 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lff">
     <q-header elevated>
       <q-toolbar class="bg-dark" style="border-bottom: 1px solid #fff">
+        <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
         <q-toolbar-title class="row justify-between">
           <div class="q-pt-lg q-pl-xl">
             <img width="80" src="/images/logo.png">
           </div>
-          <div class="row col-xl-4 col-lg-5 col-md-6 gt-md items-center justify-between">
-            <a href="#home" class="cursor-pointer hovers text-secondary">Home</a>
-            <a href="#sobre" class="cursor-pointer hovers text-secondary">Sobre</a>
-            <a href="#menu" class="cursor-pointer hovers text-secondary">Menu</a>
-            <a href="#produtos" class="cursor-pointer hovers text-secondary">Produtos</a>
-            <a href="#contatos" class="cursor-pointer hovers text-secondary">Contatos</a>
-          </div>
           <div class="row q-pr-xl items-center q-gutter-x-sm">
-            <q-icon size="30px" name="search" />
-            <q-icon size="30px" name="shopping_cart" />
-            <q-btn label="Entrar" color="secondary" no-caps @click="openDialogLogin()" />
-
             <q-btn-dropdown v-if="typeUser === 'admin'" color="secondary" no-caps label="Marcos Piemontez" dropdown-icon="coffee">
               <q-list>
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label @click="$router.push({ name: 'dashboardAdmin' })" >Painel de Controle</q-item-label>
+                    <q-item-label>Painel de Controle</q-item-label>
                   </q-item-section>
                 </q-item>
+
+                <q-separator /> 
 
                 <q-item clickable v-close-popup>
                   <q-item-section>
@@ -61,10 +53,27 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-    <modal-login ref="modalLogin" />
+      <q-drawer v-model="drawer" show-if-above :width="250" :breakpoint="400" bordered class="bg-grey-4">
+        <q-scroll-area class="fit" style="height: calc(100%) border-right: 1px solid #ddd">
+          <q-list padding>
+            <q-item v-for="nav in navs" :to="nav.to" :key="nav.label" clickable v-ripple exact>
+              <q-item-section avatar>
+                <q-icon size="25px" :name="nav.icon" />
+              </q-item-section>
+
+              <q-item-section>
+                {{ nav.label }}
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
+
+      <q-page-container>
+        <router-view />
+      </q-page-container>
+
+      <modal-login ref="modalLogin" />
   </q-layout>
 </template>
 
@@ -81,7 +90,30 @@ export default ({
 
   setup () {
     return {
-      typeUser: ref('admin')
+      typeUser: ref('admin'),
+      drawer: ref(false),
+      navs: [
+        {
+          label: 'Perfil',
+          icon: 'fas fa-user',
+          to: 'perfil'
+        },
+        {
+          label: 'Produtos',
+          icon: 'description',
+          to: 'produtos'
+        },
+        {
+          label: 'Pedidos',
+          icon: 'assignment',
+          to: 'pedidos'
+        },
+        {
+          label: 'Configurações',
+          icon: 'settings',
+          to: '/configuracao'
+        }
+      ]
     }
   },
 

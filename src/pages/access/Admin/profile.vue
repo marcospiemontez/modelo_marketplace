@@ -1,14 +1,21 @@
 <template>
-  <q-dialog class="row justify-center" v-model="modalRegistration" persistent transition-show="flip-down" transition-hide="flip-up">
-    <q-card
-      class="row items-center justify-center"
-      style="border-radius: 20px; max-width: 1000px; background: linear-gradient(40deg, #311a14, #21222c);"
-    >
-      <q-form @submit="onSubmit" class="row col-12 justify-center">
-        <span class="text-secondary text-bold text-h5 col-12 text-center q-my-lg"
-          >Cadastro de Membros</span
-        >
-        <div class="row col-12 q-gutter-lg justify-center">
+    <div class="row justify-center">
+      <div class="col-11 text-h5 q-mt-lg text-primary text-bold">Perfil</div>
+      <div class="col-11 text-h6 text-grey-8 text-bold q-mb-lg">
+        Dados pessoais
+      </div>
+      <q-card class="col-11" style="border-radius: 20px; background: #21222c">
+        <div class="row col-12 justify-end">
+          <q-btn
+            class="q-mr-lg q-mt-sm"
+            flat
+            color="secondary"
+            icon="far fa-edit"
+            label="Editar"
+            no-caps
+          />
+        </div>
+        <div class="row col-12 q-gutter-lg q-mt-lg justify-center">
           <q-input
             required
             v-model="dataUser.name"
@@ -128,21 +135,8 @@
             </template>
           </q-input>
           <div
-            class="row col-12 items-end justify-center q-mt-xl q-mb-md q-gutter-x-xl"
+            class=" row col-12 items-end justify-center q-mt-xl q-mb-md q-gutter-x-xl"
           >
-            <q-btn
-              @mouseover="activeHover = true"
-              @mouseleave="activeHover = false"
-              :color="activeHover ? 'grey-10' : 'primary'"
-              size="20px"
-              rounded
-              standout
-              outlined
-              class="col-3"
-              label="Fechar"
-              type="submit"
-              @click="closeModalRegistration()"
-            />
             <q-btn
               @mouseover="activeHover2 = true"
               @mouseleave="activeHover2 = false"
@@ -152,24 +146,19 @@
               standout
               outlined
               class="col-3"
-              label="Cadastrar"
+              label="Salvar"
               type="submit"
-              @click="onSubmit()"
             />
           </div>
         </div>
-      </q-form>
-    </q-card>
-  </q-dialog>
-
+      </q-card>
+    </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 
 export default {
-  components: {},
-  name: "modalRegistration",
   setup() {
     return {
       modalRegistration: ref(false),
@@ -178,65 +167,53 @@ export default {
       isPwd: ref(true),
       isPwd2: ref(true),
       dataUser: ref({
-        name: ref(''),
-        surname: ref(''),
-        email: ref(''),
-        phone: ref(''),
-        cpf: ref(''),
-        birthday: ref(''),
-        password: ref(''),
-        confirmPassword: ref(''),
+        name: ref(""),
+        surname: ref(""),
+        email: ref(""),
+        phone: ref(""),
+        cpf: ref(""),
+        birthday: ref(""),
+        password: ref(""),
+        confirmPassword: ref(""),
       }),
-    }
+    };
   },
   methods: {
-    openModalRegistration() {
-      this.modalRegistration = true
-    },
-    closeModalRegistration() {
-      this.modalRegistration = false
-    },
-
-    onSubmit () {},
-
-    checkCpf (cpf) {
-      let add
-      let rev
-      cpf = cpf.replace(/\.|-/g, '')
-      if (cpf === '') return 'CPF inválido!'
+    checkCpf(cpf) {
+      let add;
+      let rev;
+      cpf = cpf.replace(/\.|-/g, "");
+      if (cpf === "") return "CPF inválido!";
       // Elimina CPFs invalidos conhecidos
       if (
         cpf.length !== 11 ||
-        cpf === '00000000000' ||
-        cpf === '11111111111' ||
-        cpf === '22222222222' ||
-        cpf === '33333333333' ||
-        cpf === '44444444444' ||
-        cpf === '55555555555' ||
-        cpf === '66666666666' ||
-        cpf === '77777777777' ||
-        cpf === '88888888888' ||
-        cpf === '99999999999'
+        cpf === "00000000000" ||
+        cpf === "11111111111" ||
+        cpf === "22222222222" ||
+        cpf === "33333333333" ||
+        cpf === "44444444444" ||
+        cpf === "55555555555" ||
+        cpf === "66666666666" ||
+        cpf === "77777777777" ||
+        cpf === "88888888888" ||
+        cpf === "99999999999"
       ) {
-        return 'CPF inválido!'
+        return "CPF inválido!";
       }
       // Check 1o digito
-      add = 0
-      for (let i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i)
-      rev = 11 - (add % 11)
-      if (rev === 10 || rev === 11) rev = 0
-      if (rev !== parseInt(cpf.charAt(9))) return 'CPF inválido!'
+      add = 0;
+      for (let i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i);
+      rev = 11 - (add % 11);
+      if (rev === 10 || rev === 11) rev = 0;
+      if (rev !== parseInt(cpf.charAt(9))) return "CPF inválido!";
       // Check 2o digito
-      add = 0
-      for (let i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i)
-      rev = 11 - (add % 11)
-      if (rev === 10 || rev === 11) rev = 0
-      if (rev !== parseInt(cpf.charAt(10))) return 'CPF inválido!'
-      return true
-    }
-  }
-}
+      add = 0;
+      for (let i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i);
+      rev = 11 - (add % 11);
+      if (rev === 10 || rev === 11) rev = 0;
+      if (rev !== parseInt(cpf.charAt(10))) return "CPF inválido!";
+      return true;
+    },
+  },
+};
 </script>
-
-<style>
-</style>
