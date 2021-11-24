@@ -15,7 +15,7 @@ const routes = [
     path: '/',
     component: () => import('layouts/LayoutDash.vue'),
     children: [
-      { path: '/dashboardAdmin',
+      { path: 'dashboardAdmin',
         name: 'dashboardAdmin',
         component: () => import('src/pages/access/Admin/dashboardAdmin')
       },
@@ -23,15 +23,15 @@ const routes = [
         name: 'perfil',
         component: () => import('src/pages/access/Admin/profile')
       },
-      { path: '/produtos',
+      { path: 'produtos',
         name: 'produtos',
         component: () => import('src/pages/access/Admin/products')
       },
-      { path: '/pedidos',
+      { path: 'pedidos',
         name: 'pedidos',
         component: () => import('src/pages/access/Admin/requests')
       },
-      { path: '/configuracao',
+      { path: 'configuracao',
         name: 'configuracao',
         component: () => import('src/pages/access/Admin/settings')
       }
