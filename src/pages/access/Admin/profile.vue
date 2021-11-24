@@ -1,171 +1,146 @@
 <template>
-    <div class="row justify-center">
-      <div class="col-11 text-h5 q-mt-lg text-primary text-bold">Perfil</div>
-      <div class="col-11 text-h6 text-grey-8 text-bold q-mb-lg">
-        Dados pessoais
+  <div class="row justify-center">
+    <div class="col-11 text-h5 q-mt-lg text-primary text-bold">Perfil</div>
+    <div class="col-11 text-h6 text-grey-8 text-bold q-mb-lg">Dados pessoais</div>
+    <q-card class="col-11" style="border-radius: 20px; background: #21222c">
+      <div class="row col-12 justify-end">
+        <q-btn
+          v-if="!edit"
+          class="q-mr-lg q-mt-sm"
+          flat
+          color="secondary"
+          icon="far fa-edit"
+          label="Editar"
+          no-caps
+          @click="editData()"
+        />
+        <q-btn
+          v-else
+          class="q-mr-lg q-mt-sm"
+          flat
+          color="red"
+          icon="cancel"
+          label="Cancelar"
+          no-caps
+          @click="editData()"
+        />
       </div>
-      <q-card class="col-11" style="border-radius: 20px; background: #21222c">
-        <div class="row col-12 justify-end">
+      <div class="row col-12 q-gutter-lg q-mt-lg justify-center">
+        <q-input
+          :disable="!edit"
+          required
+          v-model="dataUser.name"
+          class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
+          input-class="text-grey-7 text-subtitle1"
+          label-color="primary"
+          placeholder="Nome"
+          outlined
+          dense
+          standout="bg-accent"
+        />
+        <q-input
+          :disable="!edit"
+          required
+          outlined
+          dense
+          type="email"
+          v-model="dataUser.email"
+          class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
+          input-class="text-grey-7 text-subtitle1"
+          label-color="primary"
+          placeholder="Email"
+          standout="bg-accent"
+          lazy-rules
+        />
+        <q-input
+          :disable="!edit"
+          required
+          v-model="dataUser.phone"
+          class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
+          input-class="text-grey-7 text-subtitle1"
+          label-color="primary"
+          placeholder="telefone"
+          outlined
+          dense
+          standout="bg-accent"
+          mask="(##) ##### - ####"
+          fill-mask
+          unmasked-value
+        />
+        <q-input
+          :disable="!edit"
+          required
+          v-model="dataUser.cpf"
+          class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
+          input-class="text-grey-7 text-subtitle1"
+          label-color="primary"
+          placeholder="CPF"
+          outlined
+          dense
+          standout="bg-accent"
+          mask="###.###.###-##"
+          :rules="[(val) => !!val || 'Campo obrigatório', checkCpf]"
+          lazy-rules
+          unmasked-value
+        />
+        <q-input
+          class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
+          :disable="!edit"
+          placeholder="Data de nascimento"
+          standout="bg-accent"
+          required
+          input-class="text-grey-7 text-subtitle1"
+          label-color="primary"
+          dense
+          outlined
+          v-model="dataUser.birthDate"
+          mask="##/##/####"
+        >
+          <template v-slot:append>
+            <q-icon color="secondary" name="event" class="cursor-pointer">
+              <q-popup-proxy
+                ref="qDateProxy"
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date
+                  mask="DD/MM/YYYY"
+                  v-model="dataUser.birthDate"
+                  :locale="formatacaoCalendario"
+                >
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
+        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11" />
+        <div class="row col-12 items-end justify-center q-mt-xl q-mb-md q-gutter-x-xl">
           <q-btn
-            class="q-mr-lg q-mt-sm"
-            flat
-            color="secondary"
-            icon="far fa-edit"
-            label="Editar"
-            no-caps
+            :disable="!edit"
+            @mouseover="activeHover2 = true"
+            @mouseleave="activeHover2 = false"
+            :color="activeHover2 ? 'grey-10' : 'primary'"
+            size="20px"
+            rounded
+            standout
+            outlined
+            class="col-3"
+            label="Salvar"
+            @click="saveData()"
           />
         </div>
-        <div class="row col-12 q-gutter-lg q-mt-lg justify-center">
-          <q-input
-            required
-            v-model="dataUser.name"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Nome"
-            outlined
-            dense
-            standout="bg-accent"
-          >
-          </q-input>
-          <q-input
-            required
-            v-model="dataUser.surname"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Sobrenome"
-            outlined
-            dense
-            standout="bg-accent"
-          >
-          </q-input>
-          <q-input
-            required
-            outlined
-            dense
-            type="email"
-            v-model="dataUser.email"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Email"
-            standout="bg-accent"
-            lazy-rules
-          >
-          </q-input>
-          <q-input
-            required
-            v-model="dataUser.phone"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="telefone"
-            outlined
-            dense
-            standout="bg-accent"
-            mask="(##) ##### - ####"
-            fill-mask
-          >
-          </q-input>
-          <q-input
-            required
-            v-model="dataUser.cpf"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="CPF"
-            outlined
-            dense
-            standout="bg-accent"
-            mask="###.###.###-##"
-            :rules="[(val) => !!val || 'Campo obrigatório', checkCpf(dataUser.cpf)]"
-            lazy-rules
-          >
-          </q-input>
-          <q-input
-            required
-            type="date"
-            v-model="dataUser.birthday"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Data Nascimento"
-            outlined
-            dense
-            color="white"
-            standout="bg-accent"
-          >
-          </q-input>
-          <q-input
-            required
-            :type="!isPwd ? 'text' : 'password'"
-            v-model="dataUser.password"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Senha"
-            outlined
-            dense
-            standout="bg-accent"
-            lazy-rules
-          >
-            <template v-slot:append>
-              <q-icon
-                size="25px"
-                color="grey-8"
-                :name="isPwd ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer q-mt-xs"
-                @click="isPwd = !isPwd"
-              ></q-icon>
-            </template>
-          </q-input>
-          <q-input
-            required
-            :type="!isPwd2 ? 'text' : 'password'"
-            v-model="dataUser.confirmPassword"
-            class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-xs-11"
-            input-class="text-grey-7 text-subtitle1"
-            label-color="primary"
-            placeholder="Confirmar Senha"
-            outlined
-            dense
-            standout="bg-accent"
-            lazy-rules
-          >
-            <template v-slot:append>
-              <q-icon
-                size="25px"
-                color="grey-8"
-                :name="isPwd2 ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer q-mt-xs"
-                @click="isPwd2 = !isPwd2"
-              ></q-icon>
-            </template>
-          </q-input>
-          <div
-            class=" row col-12 items-end justify-center q-mt-xl q-mb-md q-gutter-x-xl"
-          >
-            <q-btn
-              @mouseover="activeHover2 = true"
-              @mouseleave="activeHover2 = false"
-              :color="activeHover2 ? 'grey-10' : 'primary'"
-              size="20px"
-              rounded
-              standout
-              outlined
-              class="col-3"
-              label="Salvar"
-              type="submit"
-            />
-          </div>
-        </div>
-      </q-card>
-    </div>
+      </div>
+    </q-card>
+  </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   setup() {
@@ -181,13 +156,38 @@ export default {
         email: ref(""),
         phone: ref(""),
         cpf: ref(""),
-        birthday: ref(""),
-        password: ref(""),
-        confirmPassword: ref(""),
+        birthDate: ref(""),
       }),
+      formatacaoCalendario: ref({
+        days: "Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado".split("_"),
+        daysShort: "Dom_Seg_Ter_Qua_Qui_Sex_Sáb".split("_"),
+        months: "Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro".split(
+          "_"
+        ),
+        monthsShort: "Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez".split("_"),
+        firstDayOfWeek: 1,
+      }),
+      edit: ref(false),
     };
   },
+
+  mounted() {
+    this.fillData();
+  },
+
+  computed: {
+    ...mapGetters("user", ["getUserData"]),
+  },
+
   methods: {
+    ...mapActions("user", ["patchUser", "getUser"]),
+    editData() {
+      if (this.edit === false) {
+        this.edit = true;
+      } else {
+        this.edit = false;
+      }
+    },
     checkCpf(cpf) {
       let add;
       let rev;
@@ -222,6 +222,68 @@ export default {
       if (rev === 10 || rev === 11) rev = 0;
       if (rev !== parseInt(cpf.charAt(10))) return "CPF inválido!";
       return true;
+    },
+    fillData() {
+      this.dataUser.name = this.getUserData.name;
+      this.dataUser.email = this.getUserData.email;
+      this.dataUser.phone = this.getUserData.phone;
+      this.dataUser.cpf = this.getUserData.cpf;
+      this.dataUser.birthDate = this.getUserData.birthDate;
+    },
+    saveData() {
+      const day = this.dataUser.birthDate.substr(0, 2)
+      const week = this.dataUser.birthDate.substr(3, 2)
+      const year = this.dataUser.birthDate.substr(6, 4)
+      const dateCurrent = new Date()
+      const hoursCurrent = dateCurrent.getHours() + ':' + dateCurrent.getMinutes() + ':' + dateCurrent.getSeconds()
+
+      this.dataUser.birthDate = new Date(year + '-' + week + '-' + day + ' ' + hoursCurrent)
+      this.patchUser({
+        id: this.getUserData.id,
+        data: this.dataUser,
+      })
+        .then(async (res) => {
+          this.edit = false;
+
+          await this.getUser({ id: this.getUserData.id })
+          this.fillData();
+          this.$q.notify({
+            position: "bottom",
+            color: "positive",
+            textColor: "white",
+            icon: "check",
+            message: "Dados atualizados com sucesso!",
+          });
+        })
+        .catch((error) => {
+          this.edit = false;
+          if (error.status === 400) {
+            this.$q.notify({
+              position: "bottom",
+              color: "negative",
+              textColor: "white",
+              icon: "error",
+              message: JSON.stringify(error.data.errors),
+              timeout: 5000,
+            });
+          } else if (error.status === 404) {
+            this.$q.notify({
+              position: "bottom",
+              color: "negative",
+              textColor: "white",
+              icon: "error",
+              message: error.data.message,
+            });
+          } else {
+            this.$q.notify({
+              position: "bottom",
+              color: "negative",
+              textColor: "white",
+              icon: "error",
+              message: "Não foi possível atualizar os dados, tente novamente!",
+            });
+          }
+        });
     },
   },
 };

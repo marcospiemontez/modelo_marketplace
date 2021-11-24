@@ -17,20 +17,44 @@ export function loginUser ({ commit }, { data }) {
         api.post('/authentication/loginUser', data).then((res) => {
             window.localStorage.setItem('marketplace_token', res.data.token)    // salvando no local storage
             commit('SET_TOKEN', res.data.token)
-            commit('SET_USER_DATA', res.data.user)
+            const data = {
+                id: res.data.user.id,
+                name: res.data.user.name,
+                cpf: res.data.user.cpf,
+                email: res.data.user.email,
+                phone: res.data.user.phone,
+                birthDate: new Date(res.data.user.birthDate).toLocaleDateString('pt-br'),
+                typeAccess: res.data.user.typeAccess,
+                typeAccessData: res.data.user.typeAccessData,
+                createAt: res.data.user.createAt,
+                updateAt: res.data.user.updateAt
+            }
+            commit('SET_USER_DATA', data)
             resolve(res)
         }).catch((error) => {
             reject(error.response)
         })
     })
 }
-// FIM ROTAS AUTENTICADAS
+// FIM ROTAS NÃO AUTENTICADAS
 
 // ROTAS AUTENTICADAS PELO TOKEN REALIZAM A REQUISIÇÃO  COM A IMPORTAÇÃO DA VARIÁVEL "f"
-export function getUSer ({ commit }, { id }) {
+export function getUser ({ commit }, { id }) {
     return new Promise((resolve, reject) => {
-        f().axiosToken().get(`/users/${id}`).then((res) => {
-            commit('SET_USER_DATA', res.data)
+        f().axiosToken().get(`/users/${id}/details`).then((res) => {
+            const data = {
+                id: res.data.user.id,
+                name: res.data.user.name,
+                cpf: res.data.user.cpf,
+                email: res.data.user.email,
+                phone: res.data.user.phone,
+                birthDate: new Date(res.data.user.birthDate).toLocaleDateString('pt-br'),
+                typeAccess: res.data.user.typeAccess,
+                typeAccessData: res.data.user.typeAccessData,
+                createAt: res.data.user.createAt,
+                updateAt: res.data.user.updateAt
+            }
+            commit('SET_USER_DATA', data)
             resolve(res)
         }).catch((error) => {
             reject(error.response)
@@ -38,7 +62,7 @@ export function getUSer ({ commit }, { id }) {
     })
 }
 
-export function getUSers ({ commit }) {
+export function getUsers ({ commit }) {
     return new Promise((resolve, reject) => {
         f().axiosToken().get('/user/list').then((res) => {
             commit('SET_LIST_USERS', res.data)
@@ -48,4 +72,14 @@ export function getUSers ({ commit }) {
         })
     })
 }
-// FIM ROTAS NÃO AUTENTICADAS
+
+export function patchUser ({ dispatch }, { id, data }) {
+    return new Promise((resolve, reject) => {
+        f().axiosToken().patch(`/users/${id}`, data).then((res) => {
+            resolve(res)
+        }).catch((error) => {
+            reject(error.response)
+        })
+    })
+}
+// FIM ROTAS AUTENTICADAS
