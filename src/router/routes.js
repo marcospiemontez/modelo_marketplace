@@ -6,7 +6,7 @@ const routes = [
     children: [
       { path: '',
         name: 'landingPage',
-        component: () => import('src/pages/landingPage')
+        component: () => import('src/pages/homePage')
       }
     ]
   },
